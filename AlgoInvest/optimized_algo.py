@@ -11,13 +11,15 @@ def get_actions(file):
         list_actions = []
         for i in range(len(content)):
             action = content[i].split(",")
-            list_actions.append((action[0], int(action[1])*100, int(action[2][:-2])/100))
+            if float(action[1])> 0 and float(action[2][:-1]) > 0:
+                list_actions.append((action[0], int(round(float(action[1])*100, 2)), float(action[2][:-1])/100))
     return list_actions
 
 
 def best_investment(amount_available, list_actions: list, selected_actions=[]):
     """ selected the best investment in list_actions with a max amount """
     # trier la liste d'action de la plus chère à la moins chère
+    global count
     list_actions.sort(key=lambda action: action[1], reverse=True)
 
     # création d'une matrice sous forme d'une liste de (j = len(list_actions)+1) listes.
@@ -38,6 +40,7 @@ def best_investment(amount_available, list_actions: list, selected_actions=[]):
         j += 1
         # boucle sur les valeurs à tester
         for i in range(amount_available+1):
+            count += 1
             # vérifier si la valeur de l'action  est supérieure à la valeur test et mettre 0
             if action[1] > i:
                 matrice[j].append(0)
@@ -55,8 +58,8 @@ def best_investment(amount_available, list_actions: list, selected_actions=[]):
     while i:
         j = len(list_actions)
         for action in list_actions[::-1]:
-            test1 = matrice[j][i]
-            test2 = matrice[j-1][i]
+            # test1 = matrice[j][i]
+            # test2 = matrice[j-1][i]
 
             if matrice[j][i] <= matrice[j - 1][i]:
                 # ne pas sélectionner l'action
@@ -70,18 +73,31 @@ def best_investment(amount_available, list_actions: list, selected_actions=[]):
 
 
 if __name__ == '__main__':
+    count = 0
     start = time.time()
     # actions = get_actions("actions.csv")
     actions = get_actions("dataset1_Python+P7-1.csv")
+    # actions = get_actions("dataset2_Python+P7.csv")
     benefice, selected_actions = best_investment(50000, actions)
     price = 0
     for action in selected_actions:
         price += action[1]
-    print(f"Vous dépensez {price} euros pour les actions suivantes:")
+    with open("results_dataSet1.txt","w") as f:
+        f.write("Bought :\n")
+        for action in selected_actions:
+            f.write(f"{action[0]}: {action[1]/100}\n")
+        f.write(f"Total cost: {price/100} euros\n")
+        f.write(f"Benefit: {benefice/100} euros")
+
+    print(f"Vous dépensez {price/100} euros pour les actions suivantes:")
     for action in selected_actions:
-        print(f"{action[0]}: profit = {action[1]*action[2]}")
+        print(f"{action[0]} : profit = {action[1]*action[2]}")
     print(f"Bénéfices: {benefice/100}")
     end = time.time()
     print(f"temps d'execution: {end - start}")
+    print(f"Count = {count}")
+
+
+# limite 1 : les chiffres montant à virgule à arrondir
 
 

@@ -1,0 +1,25 @@
+Bought :
+Share-MLGM: 0.01
+Share-EMOV: 8.89
+Share-XJMO: 9.39
+Share-GIAJ: 10.75
+Share-ZSDE: 15.11
+Share-GTQK: 15.4
+Share-MTLR: 16.49
+Share-QLMK: 17.38
+Share-FKJW: 21.08
+Share-KMTG: 23.21
+Share-UEZB: 24.87
+Share-SKKC: 24.87
+Share-USSR: 25.62
+Share-GHIZ: 28.0
+Share-KZBL: 28.99
+Share-NHWA: 29.18
+Share-IFCP: 29.23
+Share-LGWG: 31.41
+Share-LRBZ: 32.9
+Share-QQTU: 33.19
+Share-WPLI: 34.64
+Share-LPDM: 39.35
+Total cost: 499.96 euros
+Benefit: 198.54652100000004 euros

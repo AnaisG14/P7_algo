@@ -76,18 +76,18 @@ if __name__ == '__main__':
     count = 0
     start = time.time()
     # actions = get_actions("actions.csv")
-    actions = get_actions("dataset1_Python+P7-1.csv")
-    # actions = get_actions("dataset2_Python+P7.csv")
+    # actions = get_actions("dataset1_Python+P7-1.csv")
+    actions = get_actions("dataset2_Python+P7.csv")
     benefice, selected_actions = best_investment(50000, actions)
     price = 0
     for action in selected_actions:
         price += action[1]
-    with open("results_dataSet1.txt","w") as f:
-        f.write("Bought :\n")
-        for action in selected_actions:
-            f.write(f"{action[0]}: {action[1]/100}\n")
-        f.write(f"Total cost: {price/100} euros\n")
-        f.write(f"Benefit: {benefice/100} euros")
+    # with open("results_dataSet2.txt","w") as f:
+    #     f.write("Bought :\n")
+    #     for action in selected_actions:
+    #         f.write(f"{action[0]}: {action[1]/100}\n")
+    #     f.write(f"Total cost: {price/100} euros\n")
+    #     f.write(f"Benefit: {benefice/100} euros")
 
     print(f"Vous dépensez {price/100} euros pour les actions suivantes:")
     for action in selected_actions:

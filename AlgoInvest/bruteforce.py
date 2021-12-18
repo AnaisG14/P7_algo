@@ -11,7 +11,7 @@ def get_actions(file):
         list_actions = []
         for i in range(len(content)):
             action = content[i].split(",")
-            list_actions.append((action[0], int(action[1])*100, int(action[2][:-1])/100))
+            list_actions.append((action[0], int(round(float(action[1])*100, 2)), float(action[2][:-1])/100))
     return list_actions
 
 
@@ -37,6 +37,7 @@ if __name__ == '__main__':
     count = 0
     start = time.time()
     actions = get_actions("actions.csv")
+    # actions = get_actions("dataset1_Python+P7-1.csv")
     benefit, selected_actions = best_investment(50000, actions)
     price = sum([action[1] for action in selected_actions])
     print(f"Cost = {price} euros. \n List actions:")

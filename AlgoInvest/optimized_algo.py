@@ -11,7 +11,7 @@ def get_actions(file):
         list_actions = []
         for i in range(len(content)):
             action = content[i].split(",")
-            if float(action[1])> 0 and float(action[2][:-1]) > 0:
+            if float(action[1]) > 0 and float(action[2][:-1]) > 0:
                 list_actions.append((action[0], int(round(float(action[1])*100, 2)), float(action[2][:-1])/100))
     return list_actions
 
@@ -76,12 +76,14 @@ if __name__ == '__main__':
     count = 0
     start = time.time()
     # actions = get_actions("actions.csv")
-    # actions = get_actions("dataset1_Python+P7-1.csv")
-    actions = get_actions("dataset2_Python+P7.csv")
+    actions = get_actions("dataset1_Python+P7-1.csv")
+    # actions = get_actions("dataset2_Python+P7.csv")
     benefice, selected_actions = best_investment(50000, actions)
     price = 0
     for action in selected_actions:
         price += action[1]
+
+    # wrtie results in a file
     # with open("results_dataSet2.txt","w") as f:
     #     f.write("Bought :\n")
     #     for action in selected_actions:
@@ -98,6 +100,5 @@ if __name__ == '__main__':
     print(f"Count = {count}")
 
 
-# limite 1 : les chiffres montant à virgule à arrondir
 
 
